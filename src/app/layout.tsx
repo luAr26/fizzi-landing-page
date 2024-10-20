@@ -4,6 +4,8 @@ import "./global.css";
 import { repositoryName } from "@/prismicio";
 import { PrismicPreview } from "@prismicio/next";
 
+import Header from "@/components/Header";
+
 const alpino = localFont({
   src: "../../public/fonts/Alpino-Variable.woff2",
   display: "swap",
@@ -18,9 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={alpino.variable}>
-      <body>
-        {children}
-        <h1 className="text-6xl font-bold">Hello, World</h1>
+      <body className="overflow-x-hidden bg-yellow-300">
+        <Header />
+        <main>{children}</main>
       </body>
       <PrismicPreview repositoryName={repositoryName} />
     </html>
