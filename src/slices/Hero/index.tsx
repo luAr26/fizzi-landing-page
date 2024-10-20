@@ -64,3 +64,5 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
 };
 
 export default Hero;
+
+// https://youtu.be/RKQqrNyAC6k?si=0OUtQA6gX0sOl8xv&t=5898
