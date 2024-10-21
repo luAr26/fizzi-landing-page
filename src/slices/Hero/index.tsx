@@ -1,10 +1,16 @@
+"use client";
 import { Content, asText } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 
 import { Bounded } from "@/components/Bounded";
 import Button from "@/components/Button";
-import { TextSplitter } from "@/components/TextSlippter";
+import { TextSplitter } from "@/components/TextSplitter";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 /**
  * Props for `Hero`.
@@ -14,17 +20,75 @@ export type HeroProps = SliceComponentProps<Content.HeroSlice>;
 /**
  * Component for "Hero" Slices.
  */
+
 const Hero = ({ slice }: HeroProps): JSX.Element => {
+  useGSAP(() => {
+    const introTl = gsap.timeline();
+    introTl
+      .set(".hero", { opacity: 1 })
+      .from(".hero-header-word", {
+        scale: 3,
+        opacity: 0,
+        ease: "power4.in",
+        delay: 0.3,
+        stagger: 1,
+      })
+      .from(
+        ".hero-subheading",
+        {
+          opacity: 0,
+          y: 30,
+        },
+        "+=0.8",
+      )
+      .from(".hero-body", {
+        opacity: 0,
+        y: 10,
+      })
+      .from(".hero-button", {
+        opacity: 0,
+        y: 10,
+        duration: 0.6,
+      });
+
+    const scrollTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".hero",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1.5,
+        markers: true,
+      },
+    });
+
+    scrollTl
+      .fromTo(
+        "body",
+        { backgroundColor: "#fde047" },
+        { backgroundColor: "#d9f99d", overwrite: "auto" },
+        1,
+      )
+      .from(".text-side-heading .split-char", {
+        scale: 1.3,
+        y: 40,
+        rotate: -25,
+        opacity: 0,
+        stagger: 0.1,
+        ease: "back.out(3)",
+        duration: 0.5,
+      })
+      .from(".text-side-body", { y: 20, opacity: 0 });
+  });
   return (
     <Bounded
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="hero"
+      className="hero opacity-0"
     >
       <div className="grid">
-        <div className="grid auto-rows-min place-items-center text-center">
-          <div className="grid h-screen place-items-center">
-            <h1 className="hero-header text-7xl font-black uppercase leading-[0.8] md:text-[9rem] lg:text-[13rem]">
+        <div className="grid h-screen place-items-center">
+          <div className="grid auto-rows-min place-items-center text-center">
+            <h1 className="hero-header text-7xl font-black uppercase leading-[0.8] text-orange-500 md:text-[9rem] lg:text-[13rem]">
               <TextSplitter
                 text={asText(slice.primary.heading)}
                 wordDisplayStyle="block"
@@ -64,5 +128,3 @@ const Hero = ({ slice }: HeroProps): JSX.Element => {
 };
 
 export default Hero;
-
-// https://youtu.be/RKQqrNyAC6k?si=0OUtQA6gX0sOl8xv&t=5898
