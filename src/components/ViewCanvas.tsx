@@ -1,4 +1,5 @@
 "use client";
+import { View } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 
 const ViewCanvas = () => {
@@ -18,16 +19,9 @@ const ViewCanvas = () => {
       gl={{ antialias: true }}
       camera={{ fov: 30 }}
     >
-      <mesh rotation={[0.5, 0.5, 0]} position={[1, 0, 0]}>
-        <boxGeometry />
-        <meshStandardMaterial color={"hotpink"} />
-      </mesh>
-      <ambientLight intensity={2} />
-      <spotLight intensity={3} position={[1, 1, 1]} />
+      <View.Port />
     </Canvas>
   );
 };
 
 export default ViewCanvas;
-
-// https://youtu.be/RKQqrNyAC6k?si=nbfC2pvh8eun7U2p&t=8050
