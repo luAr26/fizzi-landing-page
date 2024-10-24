@@ -9,6 +9,7 @@
     "prismic",
     "prismicio",
     "secondheading",
-    "slicemachine"
+    "slicemachine",
+    "zustand"
   ]
 }
