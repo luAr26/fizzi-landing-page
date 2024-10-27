@@ -1,19 +1,20 @@
 "use client";
+import { useGSAP } from "@gsap/react";
 import { Content, asText } from "@prismicio/client";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
+import { View } from "@react-three/drei";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { Bounded } from "@/components/Bounded";
 import Button from "@/components/Button";
 import { TextSplitter } from "@/components/TextSplitter";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { useStore } from "@/hooks/useStore";
-import { useGSAP } from "@gsap/react";
-import { View } from "@react-three/drei";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Bubbles } from "./Bubbles";
 import Scene from "./Scene";
+
+import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { useStore } from "@/hooks/useStore";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 

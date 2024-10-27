@@ -1,7 +1,6 @@
 "use client";
 import { View } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
-import { Perf } from "r3f-perf";
 import { Suspense } from "react";
 
 import dynamic from "next/dynamic";
@@ -31,7 +30,7 @@ const ViewCanvas = () => {
       >
         <Suspense fallback={null}>
           <View.Port />
-          <Perf />
+          {/* <Perf /> */}
         </Suspense>
       </Canvas>
       <Loader />
