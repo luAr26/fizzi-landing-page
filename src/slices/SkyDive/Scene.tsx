@@ -183,5 +183,3 @@ function ThreeText({
 }
 
 export default Scene;
-
-// https://youtu.be/RKQqrNyAC6k?si=QOFFZUGbvhq9aila&t=16630
