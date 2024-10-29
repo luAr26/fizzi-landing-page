@@ -4,6 +4,7 @@ import "./global.css";
 import { repositoryName } from "@/prismicio";
 import { PrismicPreview } from "@prismicio/next";
 
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import ViewCanvas from "@/components/ViewCanvas";
 
@@ -27,6 +28,7 @@ export default function RootLayout({
           {children}
           <ViewCanvas />
         </main>
+        <Footer />
       </body>
       <PrismicPreview repositoryName={repositoryName} />
     </html>
